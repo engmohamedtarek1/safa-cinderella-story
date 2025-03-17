@@ -18,6 +18,28 @@ body {
   margin: 0 auto;
 }
 
+.play-audio {
+  cursor: pointer;
+  padding: 10px;
+  -webkit-backdrop-filter: blur(px);
+  backdrop-filter: blur(5px);
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  -ms-transition: background 0.3s ease-in-out;
+  -o-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.play-audio:hover,
+.highlight {
+  background: rgba(196, 78, 78, 0.3);
+}
+
 /* Scene */
 .scene {
   display: flex;
@@ -27,7 +49,7 @@ body {
   height: 100%;
   padding: 20px;
   background-image: url(imgs/main-bg2.jpg);
-  background-repeat: no-repeat;
+  background-repeat: round;
   background-size: cover;
 }
 
@@ -37,9 +59,11 @@ body {
   display: inline;
 }
 
+/* Scene 1 */
+
 .scene1 {
   background-image: url(imgs/scene1.png);
-  background-repeat: no-repeat;
+  background-repeat: round;
   background-size: cover;
   display: flex;
   align-items: end;
@@ -49,45 +73,394 @@ body {
 .scene1 .p-container {
   max-width: 40%;
   margin-top: 10rem;
-  font-size: 40px;
-  backdrop-filter: blur(0px);
+  font-size: 20px;
   background: transparent;
   font-family: "Times New Roman", Times, serif;
 }
 
-.play-audio {
-  cursor: pointer;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  backdrop-filter: blur(5px);
-  transition: background 0.3s ease-in-out;
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene1 .p-container {
+    font-size: 24px;
+  }
 }
 
-.play-audio:hover,
-.highlight {
-  background: rgba(196, 78, 78, 0.3);
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene1 .p-container {
+    font-size: 30px;
+  }
 }
+
+/* Scene 2 */
 
 .scene2 {
-  background-image: url(imgs/scene2.png);
-  background-repeat: no-repeat;
+  background-image: url(imgs/scene1.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+}
+
+.scene2 .p-container {
+  max-width: 40%;
+  margin-top: 7rem;
+  font-size: 20px;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene2 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene2 .p-container {
+    font-size: 32px;
+  }
+}
+
+/* Scene 3 */
+
+.scene3 {
+  background-image: url(imgs/scene3.png);
+  background-repeat: round;
   background-size: cover;
   display: flex;
   align-items: end;
   justify-content: end;
 }
 
-.scene2 p {
+.scene3 .p-container {
   max-width: 40%;
-  font-size: 36px;
-  backdrop-filter: blur(0px);
+  font-size: 20px;
   background: transparent;
   font-family: "Times New Roman", Times, serif;
-  margin: 0;
-  padding: 0;
 }
 
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene3 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene3 .p-container {
+    font-size: 28px;
+  }
+}
+
+/* Scene 4 */
+
+.scene4 {
+  background-image: url(imgs/scene4.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin-top: 2rem;
+}
+
+.scene4 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene4 .p-container {
+    font-size: 20px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene4 .p-container {
+    font-size: 26px;
+  }
+}
+
+/* Scene 5 */
+
+.scene5 {
+  background-image: url(imgs/scene5.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  margin-top: 2rem;
+}
+
+.scene5 .p-container {
+  font-size: 20px;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene5 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene5 .p-container {
+    font-size: 32px;
+  }
+}
+
+/* Scene 6 */
+
+.scene6 {
+  background-image: url(imgs/scene6.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene6 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene6 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene6 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 7 */
+
+.scene7 {
+  background-image: url(imgs/scene7.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene7 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene7 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene7 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 8 */
+
+.scene8 {
+  background-image: url(imgs/scene8.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene8 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene8 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene8 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 9 */
+
+.scene9 {
+  background-image: url(imgs/scene9.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene9 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene9 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene9 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 10 */
+
+.scene10 {
+  background-image: url(imgs/scene10.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene10 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene10 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene10 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 11 */
+
+.scene11 {
+  background-image: url(imgs/scene11.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene11 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 5rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene11 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene11 .p-container {
+    font-size: 30px;
+  }
+}
+
+/* Scene 12 */
+
+.scene12 {
+  background-image: url(imgs/scene12.png);
+  background-repeat: round;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.scene12 .p-container {
+  max-width: 40%;
+  font-size: 20px;
+  margin-top: 2rem;
+  background: transparent;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* For screens larger than 992px (small laptops and up) */
+@media (min-width: 992px) {
+  .scene12 .p-container {
+    font-size: 24px;
+  }
+}
+
+/* For screens larger than 1200px (large laptops and up) */
+@media (min-width: 1200px) {
+  .scene12 .p-container {
+    font-size: 36px;
+  }
+}
+
+/* End Scenes */
 
 .arrows {
   display: flex;
@@ -111,6 +484,7 @@ body {
   background: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: #333;
 }
@@ -152,7 +526,9 @@ body {
 }
 
 #volume-btn:hover,
-#start-btn:hover {
+#start-btn:hover,
+#home-btn:hover,
+.fas:hover {
   background-color: #0056b3;
 }
 
