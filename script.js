@@ -1,11 +1,9 @@
-// Scene 1 Audio
 document.addEventListener("DOMContentLoaded", function () {
   let paragraphs = document.querySelectorAll(".play-audio");
   let currentIndex = 0;
-  let isMuted = false; // حالة كتم الصوت
-  let currentAudio = null; // الصوت الحالي
+  let isMuted = true;
+  let currentAudio = null;
 
-  // تشغيل الصوت مع تمييز الفقرة
   function playNextAudio() {
     if (currentIndex < paragraphs.length) {
       let paragraph = paragraphs[currentIndex];
@@ -14,13 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!audioSrc) return;
 
       currentAudio = new Audio(audioSrc);
-      currentAudio.muted = isMuted; // ضبط حالة الصوت عند التشغيل
-
+      currentAudio.muted = isMuted;
       paragraph.classList.add("highlight");
 
-      currentAudio.addEventListener("canplaythrough", function () {
-        currentAudio.play();
-      });
+      currentAudio
+        .play()
+        .then(() => {
+          console.log("Audio started playing.");
+        })
+        .catch((error) => {
+          console.warn("Autoplay failed. Waiting for user interaction...");
+          document.addEventListener("click", retryAudioPlayback, {
+            once: true,
+          });
+        });
 
       currentAudio.onended = function () {
         paragraph.classList.remove("highlight");
@@ -30,31 +35,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // دالة كتم الصوت
+  function retryAudioPlayback() {
+    if (currentAudio) {
+      currentAudio
+        .play()
+        .catch((error) => console.error("Playback still blocked:", error));
+    } else {
+      playNextAudio();
+    }
+  }
+
   function toggleMute() {
     let volumeBtn = document.getElementById("volume-btn");
     let volumeIcon = volumeBtn.querySelector("i");
 
     isMuted = !isMuted;
 
-    // تغيير الأيقونة
     if (isMuted) {
-      volumeIcon.classList.remove("fa-volume-up");
-      volumeIcon.classList.add("fa-volume-mute");
+      volumeIcon.classList.replace("fa-volume-up", "fa-volume-mute");
     } else {
-      volumeIcon.classList.remove("fa-volume-mute");
-      volumeIcon.classList.add("fa-volume-up");
+      volumeIcon.classList.replace("fa-volume-mute", "fa-volume-up");
     }
 
-    // كتم أو إلغاء كتم الصوت الحالي
     if (currentAudio) {
       currentAudio.muted = isMuted;
     }
   }
 
-  // تشغيل الصوت الأول بعد 1 ثانية من تحميل الصفحة
-  setTimeout(playNextAudio, 1000);
-
-  // ربط زر كتم الصوت بالدالة
   document.getElementById("volume-btn").addEventListener("click", toggleMute);
+
+  // Try playing on DOMContentLoaded
+  playNextAudio();
 });
