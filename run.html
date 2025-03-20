@@ -6,30 +6,55 @@
     <title>World of Adventures</title>
     <link rel="stylesheet" href="src/styles.css" />
     <script defer src="src/script.js"></script>
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
+
     <script
       src="https://kit.fontawesome.com/c9bca7a7f4.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
-    <div class="container">
-      <!-- Main Section -->
-      <div class="scene">
-        <h1 class="play-audio" data-audio="src/audios/0.mp3">Cendrella</h1>
-        <h1 class="start-title">✨ Welcome to the World of Adventures! ✨</h1>
-        <p class="start-desc">
-          Get ready for an exciting journey full of thrilling adventures!
-        </p>
+    <h1 class="story-title">Cinderella</h1>
+
+    <!-- شاشة البداية -->
+    <div id="start-screen" class="start-screen">
+      <h1>✨ Welcome to the World of Adventures! ✨</h1>
+      <p>Are you ready for an exciting journey?</p>
+      <button id="start-btn">Start Story</button>
+    </div>
+
+    <div class="container" id="story-container">
+      <!-- المشاهد -->
+      <div class="scene" id="scene1">
+        <div class="p-container">
+          <p class="play-audio" data-audio="src/audios/scene1/1-1.mp3">
+            Once upon a time there was a beautiful girl called Cinderella.
+          </p>
+          <p class="play-audio" data-audio="src/audios/scene1/1-2.mp3">
+            She had two ugly step-sisters who were very unkind.
+          </p>
+        </div>
       </div>
 
-      <!-- Controls -->
+      <div class="scene" id="scene3">
+        <div class="p-container">
+          <p class="play-audio" data-audio="src/audios/scene3/3-1.mp3">
+            When the day of the ball came, they made such a fuss.
+          </p>
+        </div>
+      </div>
+
+      <!-- الأزرار -->
+
       <div class="controls">
-        <button id="volume-btn"><i class="fas fa-volume-mute"></i></button>
-        <a href="src/scene1.html" class="right-button" id="start-btn">Start</a>
+        <button id="mute-btn" class="nav-button" title="Mute/Unmute">
+          <i class="fas fa-volume-up"></i>
+        </button>
+        <div>
+          <button id="prev-btn" class="nav-button" style="display: none">
+            ← Previous
+          </button>
+          <button class="nav-button" id="next-btn">Next →</button>
+        </div>
       </div>
     </div>
   </body>

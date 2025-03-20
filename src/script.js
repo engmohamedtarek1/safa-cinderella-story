@@ -1,69 +1,96 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let paragraphs = document.querySelectorAll(".play-audio");
-  let currentIndex = 0;
-  let isMuted = true;
+document.addEventListener("DOMContentLoaded", () => {
+  let currentSceneIndex = -1;
   let currentAudio = null;
+  let isMuted = false;
+  const scenes = document.querySelectorAll(".scene");
+  const nextButton = document.getElementById("next-btn");
+  const prevButton = document.getElementById("prev-btn");
+  const startButton = document.getElementById("start-btn");
+  const muteButton = document.getElementById("mute-btn");
+  const startScreen = document.getElementById("start-screen");
+  const storyContainer = document.getElementById("story-container");
 
-  function playNextAudio() {
-    if (currentIndex < paragraphs.length) {
-      let paragraph = paragraphs[currentIndex];
-      let audioSrc = paragraph.dataset.audio;
+  // تشغيل الصوت الخاص بالمشهد الحالي فقط مع تمييز الفقرة
+  const playAudio = async (scene) => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0; // إعادة ضبط الصوت السابق
+    }
 
-      if (!audioSrc) return;
+    const audioElements = scene.querySelectorAll(".play-audio");
+    for (const element of audioElements) {
+      // إزالة التمييز من جميع الفقرات
+      audioElements.forEach((el) => el.classList.remove("highlight"));
 
-      currentAudio = new Audio(audioSrc);
-      currentAudio.muted = isMuted;
-      paragraph.classList.add("highlight");
+      const audioSrc = element.getAttribute("data-audio");
+      if (audioSrc) {
+        currentAudio = new Audio(audioSrc);
+        currentAudio.muted = isMuted; // تطبيق حالة الكتم
+        element.classList.add("highlight"); // تمييز الفقرة الحالية
 
-      currentAudio
-        .play()
-        .then(() => {
-          console.log("Audio started playing.");
-        })
-        .catch((error) => {
-          console.warn("Autoplay failed. Waiting for user interaction...");
-          document.addEventListener("click", retryAudioPlayback, {
-            once: true,
-          });
+        await new Promise((resolve) => {
+          currentAudio.onended = () => {
+            element.classList.remove("highlight"); // إزالة التمييز عند انتهاء الصوت
+            resolve();
+          };
+          currentAudio.play();
         });
-
-      currentAudio.onended = function () {
-        paragraph.classList.remove("highlight");
-        currentIndex++;
-        playNextAudio();
-      };
+      }
     }
-  }
+    goToNextScene(); // الانتقال التلقائي بعد انتهاء آخر صوت
+  };
 
-  function retryAudioPlayback() {
-    if (currentAudio) {
-      currentAudio
-        .play()
-        .catch((error) => console.error("Playback still blocked:", error));
-    } else {
-      playNextAudio();
+  // الانتقال إلى المشهد التالي
+  const goToNextScene = () => {
+    if (currentSceneIndex < scenes.length - 1) {
+      scenes[currentSceneIndex].classList.remove("active");
+      currentSceneIndex++;
+      scenes[currentSceneIndex].classList.add("active");
+      playAudio(scenes[currentSceneIndex]);
+      updateButtons();
     }
-  }
+  };
 
-  function toggleMute() {
-    let volumeBtn = document.getElementById("volume-btn");
-    let volumeIcon = volumeBtn.querySelector("i");
+  // الرجوع إلى المشهد السابق
+  const goToPreviousScene = () => {
+    if (currentSceneIndex > 0) {
+      scenes[currentSceneIndex].classList.remove("active");
+      currentSceneIndex--;
+      scenes[currentSceneIndex].classList.add("active");
+      playAudio(scenes[currentSceneIndex]); // تشغيل الصوت عند العودة
+      updateButtons();
+    }
+  };
 
+  // تحديث حالة الأزرار
+  const updateButtons = () => {
+    prevButton.style.display =
+      currentSceneIndex === 0 ? "none" : "inline-block";
+    nextButton.style.display =
+      currentSceneIndex === scenes.length - 1 ? "none" : "inline-block";
+  };
+
+  // تشغيل القصة من البداية
+  startButton.addEventListener("click", () => {
+    startScreen.style.display = "none";
+    storyContainer.style.display = "block";
+    currentSceneIndex = 0;
+    scenes[currentSceneIndex].classList.add("active");
+    playAudio(scenes[currentSceneIndex]);
+    updateButtons();
+  });
+
+  nextButton.addEventListener("click", goToNextScene);
+  prevButton.addEventListener("click", goToPreviousScene);
+
+  // زر كتم وتشغيل الصوت
+  muteButton.addEventListener("click", () => {
     isMuted = !isMuted;
-
-    if (isMuted) {
-      volumeIcon.classList.replace("fa-volume-up", "fa-volume-mute");
-    } else {
-      volumeIcon.classList.replace("fa-volume-mute", "fa-volume-up");
-    }
-
     if (currentAudio) {
       currentAudio.muted = isMuted;
     }
-  }
-
-  document.getElementById("volume-btn").addEventListener("click", toggleMute);
-
-  // Try playing on DOMContentLoaded
-  playNextAudio();
+    muteButton.innerHTML = isMuted
+      ? '<i class="fas fa-volume-mute"></i>'
+      : '<i class="fas fa-volume-up"></i>';
+  });
 });
