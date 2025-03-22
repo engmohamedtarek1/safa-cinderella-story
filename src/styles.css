@@ -34,28 +34,64 @@ body {
   -o-border-radius: 1rem;
 }
 
-.start-screen h1 {
-  font-size: 28px;
-  color: #007bff;
+/* حاوية المحتوى */
+.start-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px 50px;
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.start-screen p {
+/* العنوان */
+.title {
+  font-size: 28px;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* النص الفرعي */
+.subtitle {
   font-size: 18px;
+  color: #ddd;
   margin-bottom: 20px;
 }
 
-.start-screen button {
-  background-color: #007bff;
-  color: white;
+/* زر البدء */
+.start-btn {
   padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: #ff9800;
   border: none;
-  font-size: 20px;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 10px;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
 }
 
-.start-screen button:hover {
-  background-color: #7c3aed;
+/* تأثير Hover */
+.start-btn:hover {
+  background: #e68900;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 152, 0, 0.6);
+}
+
+/* تأثير Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* إخفاء القصة في البداية */
@@ -74,7 +110,7 @@ body {
 }
 
 .nav-button:hover {
-  background-color: #7c3aed;
+  background-color: #fdaf34;
 }
 
 .story-title {
@@ -115,13 +151,14 @@ p.play-audio {
 
 /* Scene */
 .scene {
+  background-repeat: round;
+  background-size: cover;
   border: 8px solid #fdaf34;
-  border-radius: 1rem;
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  height: 60vh;
+  height: 66vh;
   padding: 20px;
   background-image: url(imgs/main-bg2.jpg);
   background-repeat: round;
@@ -130,29 +167,42 @@ p.play-audio {
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
+  border-radius: 1rem;
 }
 
 .scene.active {
   display: flex;
+  position: relative;
 }
 
 .p-container {
-  font-size: 28px;
+  font-size: 20px;
   font-family: cursive;
   font-weight: bold;
   background-color: #ffffff8e;
   padding: 8px;
-  border-radius: 0.25rem;
   -webkit-border-radius: 0.25rem;
   -moz-border-radius: 0.25rem;
   -ms-border-radius: 0.25rem;
   -o-border-radius: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .scene .p-container p {
   margin: 0;
   padding: 0;
   display: inline;
+}
+
+.scene-num {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  background-color: #3697cba9;
+  padding: 4px 6px;
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
 }
 
 .arrows {
@@ -198,7 +248,7 @@ p.play-audio {
   justify-content: space-between;
   justify-self: center;
   align-items: center;
-  padding: 50px;
+  padding: 30px 50px;
   width: 70%;
   background: rgba(255, 255, 255, 0.3);
 }
@@ -227,63 +277,15 @@ p.play-audio {
   border-radius: 50%;
 }
 
-/* Scene 0 */
-.scene0 {
-  display: flex;
-  gap: 5rem;
-  padding-top: 11rem;
-}
-
-/* Scene 1 */
+/* Scenes */
 
 #scene1 {
   background-image: url(imgs/scene1.png);
-  background-repeat: round;
-  background-size: cover;
 }
 
-.scene1 .p-container {
-  max-width: 40%;
-  margin-top: 8rem;
-  font-size: 20px;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
+#scene2 {
+  background-image: url(imgs/scene2.png);
 }
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene1 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene1 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 2 */
-
-.scene2 {
-  background-image: url(imgs/scene1.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
-}
-
-.scene2 .p-container {
-  max-width: 40%;
-  margin-top: 7rem;
-  font-size: 20px;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* Scene 3 */
 
 #scene3 {
   background-image: url(imgs/scene3.png);
@@ -291,393 +293,50 @@ p.play-audio {
 
 .scene3 {
   background-image: url(imgs/scene3.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: end;
 }
 
-.scene3 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene3 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene3 .p-container {
-    font-size: 28px;
-  }
-}
-
-/* Scene 4 */
-
-.scene4 {
+#scene4 {
   background-image: url(imgs/scene4.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
 }
 
-.scene4 .p-container {
-  max-width: 40%;
-  margin-top: 8rem;
-  font-size: 20px;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene4 .p-container {
-    font-size: 20px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene4 .p-container {
-    font-size: 26px;
-  }
-}
-
-/* Scene 5 */
-
-.scene5 {
+#scene5 {
   background-image: url(imgs/scene5.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: end;
 }
 
-.scene5 .p-container {
-  font-size: 20px;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene5 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene5 .p-container {
-    font-size: 32px;
-  }
-}
-
-/* Scene 6 */
-
-.scene6 {
+#scene6 {
   background-image: url(imgs/scene6.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: start;
-  justify-content: start;
 }
 
-.scene6 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 8rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene6 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene6 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 7 */
-
-.scene7 {
+#scene7 {
   background-image: url(imgs/scene7.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: start;
-  justify-content: start;
 }
 
-.scene7 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 8rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene7 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene7 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 8 */
-
-.scene8 {
+#scene8 {
   background-image: url(imgs/scene8.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: start;
-  justify-content: start;
 }
 
-.scene8 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 5rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene8 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene8 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 9 */
-
-.scene9 {
+#scene9 {
   background-image: url(imgs/scene9.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
 }
 
-.scene9 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 8rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene9 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene9 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 10 */
-
-.scene10 {
-  background-image: url(imgs/scene10.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
-}
-
-.scene10 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 5rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene10 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene10 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 11 */
-
-.scene11 {
+#scene10 {
   background-image: url(imgs/scene11.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
 }
 
-.scene11 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 8rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene11 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene11 .p-container {
-    font-size: 30px;
-  }
-}
-
-/* Scene 12 */
-
-.scene12 {
+#scene11 {
   background-image: url(imgs/scene12.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: start;
-  justify-content: start;
 }
 
-.scene12 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 8rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene12 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene12 .p-container {
-    font-size: 36px;
-  }
-}
-
-/* Scene 13 */
-
-.scene13 {
+#scene12 {
   background-image: url(imgs/scene13.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: start;
-  justify-content: end;
 }
 
-.scene13 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 2rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene13 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene13 .p-container {
-    font-size: 36px;
-  }
-}
-
-/* Scene 14 */
-
-.scene14 {
+#scene13 {
   background-image: url(imgs/scene14.png);
-  background-repeat: round;
-  background-size: cover;
-  display: flex;
-  align-items: end;
-  justify-content: start;
 }
 
-.scene14 .p-container {
-  max-width: 40%;
-  font-size: 20px;
-  margin-top: 7rem;
-  background: transparent;
-  font-family: "Times New Roman", Times, serif;
-}
-
-/* For screens larger than 992px (small laptops and up) */
-@media (min-width: 992px) {
-  .scene14 .p-container {
-    font-size: 24px;
-  }
-}
-
-/* For screens larger than 1200px (large laptops and up) */
-@media (min-width: 1200px) {
-  .scene14 .p-container {
-    font-size: 36px;
-  }
+#scene14 {
+  background-image: url(imgs/scene14.png);
 }
 
 /* End Scenes */
