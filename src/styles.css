@@ -135,7 +135,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 60%;
+  width: 70%;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -156,7 +156,7 @@ p.play-audio {
 
 .play-audio:hover,
 .highlight {
-  background: rgba(196, 78, 78, 0.3);
+  background: rgba(196, 78, 78, 0.9);
 }
 
 /* Scene */
@@ -168,7 +168,7 @@ p.play-audio {
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  height: 66vh;
+  height: 80vh;
   padding: 20px;
   background-image: url(imgs/main-bg2.jpg);
   background-repeat: round;
