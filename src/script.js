@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const muteButton = document.getElementById("mute-btn");
   const startScreen = document.getElementById("start-screen");
   const storyContainer = document.getElementById("story-container");
+  const pauseResumeButton = document.getElementById("pause-resume-btn");
+  let isPaused = false; // حالة الإيقاف المؤقت
 
   // تشغيل الصوت الخاص بالمشهد الحالي فقط مع تمييز الفقرة
   const playAudio = async (scene) => {
@@ -69,6 +71,19 @@ document.addEventListener("DOMContentLoaded", () => {
     nextButton.style.display =
       currentSceneIndex === scenes.length - 1 ? "none" : "inline-block";
   };
+
+  pauseResumeButton.addEventListener("click", () => {
+    if (currentAudio) {
+      if (!isPaused) {
+        currentAudio.pause(); // إيقاف الصوت مؤقتًا
+        pauseResumeButton.innerHTML = '<i class="fas fa-play"></i>'; // تغيير الأيقونة إلى تشغيل
+      } else {
+        currentAudio.play(); // استئناف التشغيل
+        pauseResumeButton.innerHTML = '<i class="fas fa-pause"></i>'; // تغيير الأيقونة إلى إيقاف مؤقت
+      }
+      isPaused = !isPaused;
+    }
+  });
 
   // تشغيل القصة من البداية
   startButton.addEventListener("click", () => {
