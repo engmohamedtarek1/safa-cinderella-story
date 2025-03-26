@@ -76,10 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentAudio) {
       if (!isPaused) {
         currentAudio.pause(); // إيقاف الصوت مؤقتًا
-        pauseResumeButton.innerHTML = '<i class="fas fa-play"></i>'; // تغيير الأيقونة إلى تشغيل
+        pauseResumeButton.innerHTML =
+          '<img src="src/imgs/play.png" width="20" alt="Plan Icon" />'; // تغيير الأيقونة إلى تشغيل
       } else {
         currentAudio.play(); // استئناف التشغيل
-        pauseResumeButton.innerHTML = '<i class="fas fa-pause"></i>'; // تغيير الأيقونة إلى إيقاف مؤقت
+        pauseResumeButton.innerHTML =
+          '<img src="src/imgs/pause.png" width="20" alt="Pause Icon" />'; // تغيير الأيقونة إلى إيقاف مؤقت
       }
       isPaused = !isPaused;
     }
@@ -105,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentAudio.muted = isMuted;
     }
     muteButton.innerHTML = isMuted
-      ? '<i class="fas fa-volume-mute"></i>'
-      : '<i class="fas fa-volume-up"></i>';
+      ? '<img src="src/imgs/volume-muted.png" width="20" alt="Volume Muted Icon" />'
+      : '<img src="src/imgs/volume-up.png" width="20" alt="Volume Up Icon" />';
   });
 });
